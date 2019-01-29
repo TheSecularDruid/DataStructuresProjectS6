@@ -1,0 +1,8 @@
+struct lelement {
+    int data;
+    struct lelement* next;
+};
+
+struct link {
+    struct lelement* head;
+}
