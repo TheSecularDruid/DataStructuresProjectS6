@@ -43,8 +43,8 @@ sentinel_func: test_sentinel_func.o set_sentinel.o
 
 #link
 link.o : link/link.c link/link.h
-	${CC} ${CPPFLAGS} ${CFLAGS} link/link.c -ggdb -c
+	${CC} ${CPPFLAGS} ${CFLAGS} link/link.c -c
 test_link_struc.o : link/link.c link/link.h link/test_link_struc.c
-	${CC} ${CPPFLAGS} ${CFLAGS} link/test_link_struc.c -ggdb -c
-test_link : link.o test_link_struc.o
+	${CC} ${CPPFLAGS} ${CFLAGS} link/test_link_struc.c -c
+link_struc : link.o test_link_struc.o
 	${CC} ${CPPFLAGS} ${CFLAGS} link.o test_link_struc.o -o test_link
