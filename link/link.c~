@@ -1,5 +1,0 @@
-void lnk__empty(struct link* to_init) {
-    struct lelement* sentinel = malloc(sizeof(struct lelement));
-    sentinel->next = sentinel;
-				       
-}

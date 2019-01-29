@@ -1,5 +1,0 @@
-Exercice 1 :
-2.La structure chaînée vide est représentée par un pointeur vers la sentinelle.
-
-Exercice 3 :
-1.
