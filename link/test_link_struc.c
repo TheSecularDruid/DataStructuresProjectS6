@@ -25,9 +25,11 @@ int main() {
     printf("Browsing through the pile works and values are sorted as planned : %d \n", bool_test);
     //vidage
     bool_test = 1;
+    struct lelement* buffer_ptr;
     for (int k=length-1;k>=0;k-=1) {
-	buffer = *(lnk__remove_head(&test));
-	bool_test = bool_test&&(buffer.data==value[k]);
+	buffer_ptr = lnk__remove_head(&test);
+	bool_test = bool_test&&(buffer_ptr->data==value[k]);
+	free(buffer_ptr);
     }
     printf("Depiled value are in inverted orders compared to empiled values : %d \n", bool_test);
     
