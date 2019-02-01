@@ -51,5 +51,5 @@ link_struc : link.o test_link_struc.o
 
 set_link.o : link/set_link.c link/set_link.h
 	${CC} ${CPPFLAGS} ${CFLAGS} link/set_link.c -c
-link_func : set_link.o test_.o test_sentinel_func.o
+link_func : set_link.o test_sentinel_func.o
 	${CC} ${CPPFLAGS} ${CFLAGS} link.o set_link.o test_sentinel_func.o link_func
