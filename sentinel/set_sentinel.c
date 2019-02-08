@@ -71,6 +71,7 @@ int set__remove(struct set* set, int e) {
 	if (flag==1)
 	    permute (&set->s[k],&set->s[k+1]);
     }
+    return e;
 }
 
 //debug function
@@ -81,3 +82,5 @@ void print_set(const struct set* set) {
     }
     printf("]\n\n");
 }
+
+void set__free();
