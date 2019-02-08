@@ -5,7 +5,7 @@
 #define BORNE -1
 
 struct set{
-    int s[SET_SIZE];
+    int s[SET__SIZE];
 };
 
 //debug function
