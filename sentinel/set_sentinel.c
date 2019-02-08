@@ -42,7 +42,7 @@ int set__add(struct set* set, int e) {
 	return -1;
     if (set__is_empty(set)) {
 	set->s[0]=e;
-	return e;
+	return 0;
     }
 
     int k=SET_SIZE-1;
