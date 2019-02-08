@@ -5,7 +5,7 @@
 
 struct set set__empty() {
     struct set set={{0}};
-    for (int k=0;k<SET_SIZE;k+=1)
+    for (int k=0;k<SET__SIZE;k+=1)
 	set.s[k] = -1;
     return set;
 }
@@ -15,7 +15,7 @@ int set__is_empty(const struct set* set) {
 }
 
 int set__find (const struct set* set, int e) {
-    for (int i=0;i<SET_SIZE;i+=1) {
+    for (int i=0;i<SET__SIZE;i+=1) {
 	if (set->s[i]==-1)
 	    return 0;
 	else if (set->s[i]==e)
@@ -25,7 +25,7 @@ int set__find (const struct set* set, int e) {
 }
 
 size_t set__size (const struct set* set) {
-    for (int i=0;i<SET_SIZE;i+=1)
+    for (int i=0;i<SET__SIZE;i+=1)
 	if (set->s[i]==-1)
 	    return i;
     return -1;
@@ -47,10 +47,10 @@ int set__add(struct set* set, int e) {
 	return 0;
     }
 
-    int k=SET_SIZE-1;
+    int k=SET__SIZE-1;
     while(set->s[k]==-1&&k>0)
 	k-=1;
-    if(k==SET_SIZE-2)
+    if(k==SET__SIZE-2)
 	return -1;
     k++;
     set->s[k]=e;
@@ -63,7 +63,7 @@ int set__add(struct set* set, int e) {
 
 int set__remove(struct set* set, int e) {
     int flag=0;
-    for (int k=0;k<SET_SIZE-1;k+=1) {
+    for (int k=0;k<SET__SIZE-1;k+=1) {
 	if (set->s[k]==-1&&flag==0)
 	    return -1;
 	if (set->s[k]==e) {
@@ -79,7 +79,7 @@ int set__remove(struct set* set, int e) {
 //debug function
 void print_set(const struct set* set) {
     printf("\n [");
-    for (int k=0;k<SET_SIZE;k+=1) {
+    for (int k=0;k<SET__SIZE;k+=1) {
 	printf("%d, ",set->s[k]);
     }
     printf("]\n\n");

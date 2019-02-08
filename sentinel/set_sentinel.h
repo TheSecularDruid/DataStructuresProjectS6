@@ -1,7 +1,7 @@
 #ifndef SET_SENTINEL_H
 #define SET_SENTINEL_H
 
-#define SET_SIZE 10
+#define SET__SIZE 10
 #define BORNE -1
 
 struct set{
