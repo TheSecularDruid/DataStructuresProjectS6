@@ -38,6 +38,8 @@ void permute(int* a, int* b) {
 }
 
 int set__add(struct set* set, int e) {
+    if (e<0)
+	return -1;
     if (set__find(set, e)==1)
 	return -1;
     if (set__is_empty(set)) {
