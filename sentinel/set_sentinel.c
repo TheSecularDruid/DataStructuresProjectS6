@@ -55,7 +55,7 @@ int set__add(struct set* set, int e) {
     for(;k>1;k-=1)
 	if(set->s[k-1]>set->s[k])
 	    permute(&set->s[k-1],&set->s[k]);
-    return e;
+    return 0;
 }
 
 
