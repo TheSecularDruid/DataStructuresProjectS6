@@ -85,4 +85,6 @@ void print_set(const struct set* set) {
     printf("]\n\n");
 }
 
-void set__free(struct set* set){}
+void set__free(struct set* set){
+    (void)set;
+}
