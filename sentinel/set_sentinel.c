@@ -24,7 +24,7 @@ int set__find (const struct set* set, int e) {
     return -1;
 }
 
-size_t set__size (const struct set* set) {
+int set__size (const struct set* set) {
     for (int i=0;i<SET__SIZE;i+=1)
 	if (set->s[i]==-1)
 	    return i;
