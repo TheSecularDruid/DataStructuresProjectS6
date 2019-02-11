@@ -55,7 +55,7 @@ set_link.o : link/set_link.c link/set_link.h
 	${CC} ${CPPFLAGS} ${CFLAGS} link/set_link.c -c
 
 test_link_func.o: ${SET_DIR}/test_set_func.c link/set_link.h
-	${CC} ${CPPFLAGS} ${CFLAGS} -DLINK ${SET_DIR}/test_set_func.c -c -o $@
+	${CC} ${CPPFLAGS} ${CFLAGS} -DLINK ${SET_DIR}/test_set_func.c -c -o test_link_func.o
 
-link_func : set_link.o test_sentinel_func.o
-	${CC} ${CPPFLAGS} ${CFLAGS} link.o set_link.o test_sentinel_func.o link_func
+link_func : link.o test_link_func.o set_link.o
+	${CC} ${CPPFLAGS} ${CFLAGS} link.o set_link.o test_link_func.o -o link_func
