@@ -12,36 +12,36 @@ struct set set__empty() {
     return (to_return);
 }
 
-int set__is_empty(struct set to_test) {
-    return (llm__is_end_mark(to_test.l->head));
+int set__is_empty(const struct set* s) {
+    return (llm__is_end_mark(lnk__first(s->l)));
 }
 
-int set__add(struct set where_to, int i) {
+int set__add(struct set* set, int e) {
     struct lelement* to_add = malloc(sizeof(struct lelement));
     to_add->next=NULL;
-    to_add->data=i;
+    to_add->data=e;
 
-    struct lelement* ptr = where_to.l->head;	    
-    if (ptr->data>i)
-	lnk__add_head(where_to.l,to_add);
+    struct lelement* ptr = set->l->head;	    
+    if (ptr->data>e)
+	lnk__add_head(set->l,to_add);
     while (!llm__is_end_mark(ptr->next)) {
-	if (ptr->next->data>i) {
+	if (ptr->next->data>e) {
 	    lnk__add_after(ptr,to_add);
-	    return i;
+	    return e;
 	}
 	else
 	    ptr=llm__next(*ptr);
     }
-    lnk__add_tail(to_add, where_to.l);
-    return i;
+    lnk__add_tail(to_add, set->l);
+    return e;
 }
 
-int set__remove(struct set source, int i) {
-    struct lelement* ptr = source.l->head;
+int set__remove(struct set* set, int e) {
+    struct lelement* ptr = set->l->head;
     while (!llm__is_end_mark(ptr->next)) {
-	if (ptr->next->data == i) {
+	if (ptr->next->data == e) {
 	    lnk__remove_after(ptr);
-	    return (i);
+	    return (e);
 	}	
 	else
 	    ptr = llm__next(*ptr);	    
@@ -49,10 +49,10 @@ int set__remove(struct set source, int i) {
     return(-1);
 }
 
-int set__find(struct set place, int i) {
-    struct lelement* ptr = place.l->head;
+int set__find(const struct set* set, int e) {
+    struct lelement* ptr = set->l->head;
     while (!llm__is_end_mark(ptr)) {
-	if (ptr->data == i)
+	if (ptr->data == e)
 	    return 1;
 	else
 	    ptr = llm__next(*ptr);
@@ -60,12 +60,23 @@ int set__find(struct set place, int i) {
     return 0;
 }
 
-int set__size(struct set to_test) {
+int set__size(const struct set* set) {
     int size = 0;
-    struct lelement* ptr = to_test.l->head;
+    struct lelement* ptr = set->l->head;
     while (!llm__is_end_mark(ptr)) {
 	size++;
 	ptr = llm__next(*ptr);
     }
     return size;
+}
+
+void set__free(struct set* set) {
+    struct lelement* ptr = set->l->head;
+    struct lelement* ptr_next = ptr->next;
+    while (!llm__is_end_mark(ptr_next->next)) {
+	ptr_next = ptr->next;
+	free(ptr);
+	ptr = ptr_next;
+    }
+    free(set->l);
 }

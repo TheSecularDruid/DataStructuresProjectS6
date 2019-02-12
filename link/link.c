@@ -49,11 +49,17 @@ struct lelement* lnk__remove_after(struct lelement* where_to) {
 
 void lnk__add_tail(struct lelement* to_add, struct link* dest) {
     struct lelement* ptr = dest->head;
-    while (ptr->next!=SENTINEL) {
-	ptr = ptr->next;
+    if (ptr==SENTINEL) {
+	dest->head = to_add;
+	to_add->next = SENTINEL;
     }
-    ptr->next = to_add;
-    to_add->next = SENTINEL;
+    else {
+	while (ptr->next!=SENTINEL) {
+	    ptr = ptr->next;
+	}
+	ptr->next = to_add;
+	to_add->next = SENTINEL;
+    }
 }
 
 struct lelement* lnk__remove_tail(struct link* source) {

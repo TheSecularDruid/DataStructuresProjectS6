@@ -75,7 +75,7 @@ int test_size_increase_when_adding() {
 
 int main(void) {
     printf("set__is_empty() returns an empty set : %d\n", test_set_empty_and_set_is_empty());
-    printf("adding in an empty set makes it not-empty : %d\n", test_adding_in_empty_set());
+    printf("adding in an empty set makes it non-empty : %d\n", test_adding_in_empty_set());
     printf("finding in an empty set returns false : %d\n", !test_finding_in_empty_set());
     printf("finding in a set containing i returns true : %d\n", test_find());
     //printf("adding an element in a set that already contains said element doesn't change said set : %d\n", test_add_when_already_there());
