@@ -62,8 +62,8 @@ link.o : link/link.c link/link.h
 test_link_struc.o : link/link.c link/link.h link/test_link_struc.c
 	${CC} ${CPPFLAGS} ${CFLAGS} link/test_link_struc.c -c
 
-link_struc : link.o test_link_struc.o
-	${CC} ${CPPFLAGS} ${CFLAGS} link.o test_link_struc.o -o link_struc
+link_struc : link.o test_link_struc.o set_link.o
+	${CC} ${CPPFLAGS} ${CFLAGS} link.o set_link.o test_link_struc.o -o link_struc
 
 set_link.o : link/set_link.c link/set_link.h
 	${CC} ${CPPFLAGS} ${CFLAGS} link/set_link.c -c -o $@
