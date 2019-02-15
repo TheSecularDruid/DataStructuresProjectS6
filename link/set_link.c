@@ -17,6 +17,8 @@ int set__is_empty(const struct set* s) {
 }
 
 int set__add(struct set* set, int e) {
+    if (e<0)
+	return -1;
     struct lelement* to_add = malloc(sizeof(struct lelement));
     to_add->next=NULL;
     to_add->data=e;
