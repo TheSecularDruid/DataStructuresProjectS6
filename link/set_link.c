@@ -27,13 +27,13 @@ int set__add(struct set* set, int e) {
     while (!llm__is_end_mark(ptr->next)) {
 	if (ptr->next->data>e) {
 	    lnk__add_after(ptr,to_add);
-	    return e;
+	    return 0;
 	}
 	else
 	    ptr=llm__next(*ptr);
     }
     lnk__add_tail(to_add, set->l);
-    return e;
+    return 0;
 }
 
 int set__remove(struct set* set, int e) {
@@ -41,7 +41,7 @@ int set__remove(struct set* set, int e) {
     while (!llm__is_end_mark(ptr->next)) {
 	if (ptr->next->data == e) {
 	    lnk__remove_after(ptr);
-	    return (e);
+	    return (0);
 	}	
 	else
 	    ptr = llm__next(*ptr);	    
