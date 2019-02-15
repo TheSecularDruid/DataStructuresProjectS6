@@ -73,10 +73,13 @@ int set__size(const struct set* set) {
 void set__free(struct set* set) {
     struct lelement* ptr = set->l->head;
     struct lelement* ptr_next = ptr->next;
-    while (!llm__is_end_mark(ptr_next->next)) {
+    int is_empty = set__is_empty(set);
+    while (!llm__is_end_mark(ptr->next)) {
 	ptr_next = ptr->next;
 	free(ptr);
 	ptr = ptr_next;
     }
+    if(!is_empty)
+	free(ptr);
     free(set->l);
 }

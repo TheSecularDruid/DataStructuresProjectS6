@@ -13,25 +13,33 @@
 
 int test_set_empty_and_set_is_empty() {
     struct set empty_set = set__empty();
-    return(set__is_empty(&empty_set));
+    int ret = set__is_empty(&empty_set);
+    set__free(&empty_set);
+    return(ret);
 }
 
 int test_adding_in_empty_set() {
     struct set empty_set = set__empty();
     set__add(&empty_set, rand());
-    return(!set__is_empty(&empty_set));
+    int ret = !set__is_empty(&empty_set);
+    set__free(&empty_set);
+    return(ret);
 }
 
 int test_finding_in_empty_set() {
     struct set empty_set = set__empty();
-    return(set__find(&empty_set, rand()));
+    int ret = set__find(&empty_set, rand());
+    set__free(&empty_set);
+    return(ret);
 }
 
 int test_find() {
     struct set set = set__empty();
     int to_find = rand();
     set__add(&set, to_find);
-    return (set__find(&set, to_find));
+    int ret=set__find(&set, to_find);
+    set__free(&set);
+    return (ret);
 }
 
 /* int test_add_when_already_there() {  //doesn't make much sense in dynamically allocated memory implementation, as far as I think, I'd need a function actually comparing the content of the sets, like set__equal or something alike. Still makes sense in statically allocated memory implementation, which is why it's there. Also it's an axiom. */
@@ -47,7 +55,9 @@ int test_removing_from_empty_set() {
     struct set set = set__empty();
     int to_remove = rand();
     set__remove(&set, to_remove);
-    return (set__is_empty(&set));
+    int ret = set__is_empty(&set);
+    set__free(&set);
+    return (ret);
 }
 
 /* int test_adding_then_removing() { //same issue as test_add_when_already_there */
@@ -62,7 +72,9 @@ int test_removing_from_empty_set() {
 
 int test_size_of_empty_set() {
     struct set set = set__empty();
-    return(set__size(&set));
+    int ret = set__size(&set);
+    set__free(&set);
+    return(ret);
 }
 
 int test_size_increase_when_adding() {
@@ -70,6 +82,7 @@ int test_size_increase_when_adding() {
     int cur_size = set__size(&set);
     set__add(&set,rand());
     int new_size = set__size(&set);
+    set__free(&set);
     return(new_size==cur_size+1);
 }
 
